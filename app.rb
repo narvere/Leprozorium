@@ -29,7 +29,7 @@ before do
 end
 
 get '/' do
-	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"
+	erb :index
 end
 # обработчик get-запроса (браузер получает страницу с сервера)
 get '/new' do
@@ -43,6 +43,7 @@ post '/new' do
 		@error =  'Введите текст поста'
 		return erb :new
 	end
+	#сохранение данныв в DB
 	@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
 	erb "You typed #{content}"
 end
