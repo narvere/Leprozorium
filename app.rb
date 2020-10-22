@@ -30,7 +30,7 @@ end
 
 get '/' do
 	#выводим посты
-	@results = @db.execut 'select * from Posts order by id desc'
+	@results = @db.execute 'select * from Posts order by id desc'
 	erb :index
 end
 # обработчик get-запроса (браузер получает страницу с сервера)
