@@ -3,3 +3,14 @@
   <%= @row['content']%><br />
   <br /> added at <%=  @row['created_date'] %>
 </p>
+<h4>Comments:</h4>
+<p>
+<form action="/details/<%= @row['id'] %>" method="POST">
+  <div class="form-group">
+<label for="exampleFormControlTextarea1">Example textarea</label>
+<textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Type post text here" style="width: 400px"></textarea>
+</div>
+<br>
+<button type="submit" class="btn btn-primary">Add comment</button>
+</form>
+</p>
