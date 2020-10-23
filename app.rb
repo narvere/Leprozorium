@@ -21,6 +21,14 @@ configure do
 		created_date DATE,
 		content TEXT
 		)'
+
+		@db.execute 'CREATE TABLE IF NOT exists Comments
+		(
+			id INTEGER PRIMARY KEY AUTOINCREMENT,
+			created_date DATE,
+			content TEXT
+			post_id INTEGER
+			)'
 end
 #before вызывается каждый раз при перезагрузке
 before do
