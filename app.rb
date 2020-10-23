@@ -26,7 +26,7 @@ configure do
 		(
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
 			created_date DATE,
-			content TEXT
+			content TEXT,
 			post_id INTEGER
 			)'
 end
@@ -55,6 +55,7 @@ post '/new' do
 	end
 	#сохранение данныв в DB
 	@db.execute 'insert into Posts (content, created_date) values (?, datetime())', [content]
+
 	redirect to '/'
 end
 
@@ -76,5 +77,19 @@ post '/details/:post_id' do
 	post_id = params[:post_id]
 	#получает пересмнную из post-запроса
 	content = params[:content]
-	erb "You typed comment #{content} for post #{post_id}"
+	#сохранение данныв в DB
+	@db.execute 'insert into Comments
+		(
+			content,
+			created_date,
+			post_id
+		)
+			values
+		(
+			?,
+			datetime(),
+			?
+			)', [content, post_id]
+
+	redirect to ('/details/' + post_id)
 end
